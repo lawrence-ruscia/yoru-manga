@@ -1,68 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --bg-primary: oklch(14.1% 0.005 285.823); /* Main background */
+  --bg-surface: oklch(21% 0.006 285.885); /* Cards, panels, elevated surfaces */
+  --bg-elevated: oklch(27.4% 0.006 286); /* Hover states, nested surfaces */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --text-primary: oklch(95% 0.01 285);
+  --text-secondary: oklch(70% 0.02 264);
+  --text-muted: oklch(55% 0.02 264); /* Timestamps, placeholders */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --border: #252b36;
+
+  --accent: oklch(
+    55.8% 0.288 302.321
+  ); /* Links, Primary button, Active state */
+  --accent-hover: oklch(62.7% 0.265 303.9); /* Backgroud highlights */
+
+  --success: oklch(72.3% 0.219 149.579);
+  --warning: oklch(79.5% 0.184 86.047);
+  --error: oklch(63.7% 0.237 25.331);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* Global styles */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.2s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Resets */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* Text */
+.heading-xl {
+  font-size: clamp(3rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+  color: var(--text-primary);
+}
+
+.heading-lg {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.heading-md {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.body-md {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Card */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cardMeta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Button Types */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: #0f121729;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+}
+
+.btn-ghost {
+  background: none;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  border-radius: var(--radius-xs);
+}
+
+.btn-md {
+  padding: 0.75rem 1.5rem;
+  font-size: 16px;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 18px;
+  border-radius: var(--radius-md);
 }

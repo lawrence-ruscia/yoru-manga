@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import '@/styles/globals.css';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { routes } from '@/app/routes';
+import 'modern-normalize/modern-normalize.css';
 
 const router = createBrowserRouter(routes);
 
