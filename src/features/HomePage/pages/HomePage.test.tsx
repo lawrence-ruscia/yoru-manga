@@ -38,4 +38,16 @@ describe('HomePage', () => {
     // Sanitize for errors
     expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
+
+  it('shows an error message when failing to fetch products', async () => {
+    const errMsg = 'Failed to fetch manga products';
+    vi.spyOn(productsService, 'fetchProducts').mockRejectedValueOnce(
+      new Error(errMsg)
+    );
+
+    render(<HomePage />);
+
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(await screen.findByText(errMsg)).toBeInTheDocument();
+  });
 });
