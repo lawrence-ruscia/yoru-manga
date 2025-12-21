@@ -2,8 +2,10 @@
 
 :root {
   --bg-primary: oklch(14.1% 0.005 285.823); /* Main background */
-  --bg-surface: oklch(21% 0.006 285.885); /* Cards, panels, elevated surfaces */
-  --bg-elevated: oklch(27.4% 0.006 286); /* Hover states, nested surfaces */
+  --bg-surface: oklch(
+    27.4% 0.006 286.033
+  ); /* Cards, panels, elevated surfaces */
+  --bg-elevated: oklch(37% 0.013 285.805); /* Hover states, nested surfaces */
 
   --text-primary: oklch(95% 0.01 285);
   --text-secondary: oklch(70% 0.02 264);
@@ -36,6 +38,8 @@ body {
 
 button {
   transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
 /* Resets */
@@ -142,4 +146,24 @@ p {
   padding: 1rem 2rem;
   font-size: 18px;
   border-radius: var(--radius-md);
+}
+
+.btn-icon {
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  padding: 0.5rem;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 1;
+}
+
+.btn-icon:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
 }
