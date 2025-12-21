@@ -15,16 +15,16 @@ describe('App', () => {
     const router = createMemoryRouter(routes, { initialEntries: ['/'] });
     render(<RouterProvider router={router} />);
 
-    expect(
-      await screen.findByRole('heading', { name: /yoru manga/i })
-    ).toBeInTheDocument();
+    await screen.findByRole('heading', { name: /yoru manga/i });
 
     expect(
       screen.getByText(/discover manga worth reading at night/i)
     ).toBeInTheDocument();
-
     expect(
       screen.getByRole('button', { name: /browse manga/i })
     ).toBeInTheDocument();
+
+    // Sanitize for errors
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
 });

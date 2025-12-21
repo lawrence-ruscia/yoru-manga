@@ -14,13 +14,12 @@ describe('HomePage', () => {
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
 
-    expect(
-      await screen.findByRole('heading', { name: /yoru manga/i })
-    ).toBeInTheDocument();
-
+    await screen.findByRole('heading', { name: /yoru manga/i });
     expect(
       screen.getByRole('button', { name: /browse manga/i })
     ).toBeInTheDocument();
+
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
 
   it('renders a list of manga products', async () => {
@@ -35,5 +34,8 @@ describe('HomePage', () => {
     // Make sure all products are rendered
     const products = await screen.findAllByRole('listitem');
     expect(products).toHaveLength(mockProducts.length);
+
+    // Sanitize for errors
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
 });
