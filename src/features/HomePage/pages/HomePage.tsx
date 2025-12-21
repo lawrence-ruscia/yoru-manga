@@ -1,6 +1,13 @@
+import { useProducts } from '../hooks/useProducts';
 import styles from './HomePage.module.css';
 
 export const HomePage = () => {
+  const { products, isLoading, error } = useProducts();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div>
       <div className={styles.hero}>
@@ -10,7 +17,16 @@ export const HomePage = () => {
       </div>
 
       {/* Product Grid */}
-      <div></div>
+      <div>
+        {products &&
+          products.map((product) => (
+            <div key={product.id}>
+              <p>{product.title}</p>
+              <p>{product.price}</p>
+              <p>{product.genre}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

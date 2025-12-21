@@ -1,19 +1,23 @@
 import { render, screen } from '@testing-library/react';
-import { createMemoryRouter, MemoryRouter } from 'react-router';
+import { createMemoryRouter } from 'react-router';
 import { RouterProvider } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { routes } from './routes';
+import { productsService } from '@/features/HomePage/services/productsService';
+import { mockProducts } from '@/features/HomePage/data/mockProducts';
 
 describe('App', () => {
-  it('renders the homepage when navigating to the root', () => {
-    const router = createMemoryRouter(routes);
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <RouterProvider router={router} />
-      </MemoryRouter>
-    );
+  it('renders the homepage when navigating to /', async () => {
+    vi.spyOn(productsService, 'fetchProducts').mockResolvedValueOnce({
+      data: mockProducts,
+    });
 
-    expect(screen.getByText(/yoru manga/i)).toBeInTheDocument();
+    const router = createMemoryRouter(routes, { initialEntries: ['/'] });
+    render(<RouterProvider router={router} />);
+
+    expect(
+      await screen.findByRole('heading', { name: /yoru manga/i })
+    ).toBeInTheDocument();
 
     expect(
       screen.getByText(/discover manga worth reading at night/i)
