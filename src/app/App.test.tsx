@@ -13,6 +13,14 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/homepage/i));
+    expect(screen.getByText(/yoru manga/i)).toBeInTheDocument();
+
+    expect(
+      screen.getByText(/discover manga worth reading at night/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('button', { name: /browse manga/i })
+    ).toBeInTheDocument();
   });
 });
