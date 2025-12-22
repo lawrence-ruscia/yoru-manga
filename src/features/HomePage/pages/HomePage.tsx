@@ -18,7 +18,9 @@ export const HomePage = () => {
       <ProductGrid>
         {products &&
           products.map((product) => (
-            <ProductCard key={product.title} product={product} />
+            <li key={product.title} className={styles.productItem}>
+              <ProductCard product={product} />
+            </li>
           ))}
       </ProductGrid>
     </div>

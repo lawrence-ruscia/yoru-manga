@@ -7,6 +7,7 @@ type MobileMenuProps = {
   isMenuOpen: boolean;
   onMenuClose: () => void;
 };
+
 export const MobileMenu = ({ isMenuOpen, onMenuClose }: MobileMenuProps) => {
   return (
     <div>
