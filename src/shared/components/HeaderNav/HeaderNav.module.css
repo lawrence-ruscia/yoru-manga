@@ -1,0 +1,101 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.kanji {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+}
+
+.logo:hover .kanji {
+  transform: scale(1.2);
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.nav {
+  display: none;
+
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.nav a:hover {
+  color: var(--text-primary);
+}
+
+.actions {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.cart {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background-color: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+  }
+}
