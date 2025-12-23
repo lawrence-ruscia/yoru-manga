@@ -17,7 +17,7 @@
 .carousel {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(1 60px, 200px);
+  grid-auto-columns: 160px;
 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -31,10 +31,21 @@
   display: none;
 }
 
+.productItem {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .controls {
     display: flex;
     gap: 1rem;
+  }
+
+  .carousel {
+    grid-auto-columns: 200px;
   }
 
   .grid {

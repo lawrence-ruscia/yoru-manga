@@ -1,12 +1,10 @@
 import { useRef } from 'react';
 import styles from './ProductGrid.module.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import type { MangaProduct } from '../../types/MangaProduct';
+import { ProductCard } from '../ProductCard/ProductCard';
 
-export const ProductGrid = ({
-  children,
-}: {
-  children: React.ReactElement[];
-}) => {
+export const ProductGrid = ({ products }: { products: MangaProduct[] }) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -36,14 +34,19 @@ export const ProductGrid = ({
           <button
             aria-label='Scroll right'
             className='btn-icon'
-            onClick={() => scroll('right')} 
+            onClick={() => scroll('right')}
           >
             <ChevronRight />
           </button>
         </div>
       </div>
       <ul ref={listRef} className={styles.carousel}>
-        {children}
+        {products &&
+          products.map((product) => (
+            <li key={product.title} className={styles.productItem}>
+              <ProductCard product={product} />
+            </li>
+          ))}
       </ul>
     </section>
   );

@@ -1,7 +1,6 @@
 import { Hero } from '../components/Hero/Hero';
 import { useProducts } from '../hooks/useProducts';
 import styles from './HomePage.module.css';
-import { ProductCard } from '../components/ProductCard/ProductCard';
 import { ProductGrid } from '../components/ProductGrid/ProductGrid';
 
 export const HomePage = () => {
@@ -15,14 +14,7 @@ export const HomePage = () => {
     <div className={styles.page}>
       <Hero />
 
-      <ProductGrid>
-        {products &&
-          products.map((product) => (
-            <li key={product.title} className={styles.productItem}>
-              <ProductCard product={product} />
-            </li>
-          ))}
-      </ProductGrid>
+      <ProductGrid products={products} />
     </div>
   );
 };
