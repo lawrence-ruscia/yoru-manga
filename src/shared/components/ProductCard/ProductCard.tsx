@@ -1,4 +1,4 @@
-import type { MangaProduct } from '../../types/MangaProduct';
+import type { MangaProduct } from '@/features/HomePage/types/MangaProduct';
 import styles from './ProductCard.module.css';
 
 export const ProductCard = ({ product }: { product: MangaProduct }) => {
