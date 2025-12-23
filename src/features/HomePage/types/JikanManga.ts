@@ -8,5 +8,5 @@ export type JikanManga = {
   title: string;
   score: number;
   genres: { name: string }[];
+  synopsis: string;
 };
-  

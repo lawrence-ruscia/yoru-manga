@@ -5,4 +5,5 @@ export type MangaProduct = {
   rating: number;
   genre: string;
   imageUrl: string;
+  description: string;
 };

@@ -9,6 +9,7 @@ export const mapMangaToProduct = (manga: JikanManga): MangaProduct => {
     rating: manga.score,
     genre: manga.genres[0]?.name ?? 'Unknown',
     imageUrl: manga.images.jpg.image_url,
+    description: manga.synopsis,
   };
 };
 

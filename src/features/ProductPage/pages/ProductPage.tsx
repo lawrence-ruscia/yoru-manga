@@ -1,5 +1,20 @@
+import { useParams } from 'react-router-dom';
 import styles from './ProductPage.module.css';
+import { useMangaData } from '../hooks/useMangaData';
+
 export const ProductPage = () => {
+  const { mangaId } = useParams();
+
+  const { mangaData, isLoading, error } = useMangaData(Number(mangaId));
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error.name}</div>;
+  }
+
   return (
     <main>
       <section>
@@ -7,19 +22,19 @@ export const ProductPage = () => {
         <div>
           {/* Image */}
           <div>
-            <img src='' alt='Manga cover' />
+            <img src={mangaData?.imageUrl} alt='Manga cover' />
           </div>
 
           {/* Product Info */}
           <div>
-            <h1>Solo Leveling</h1>
+            <h1>{mangaData?.title}</h1>
 
             <div>
-              <span>⭐ 8.9</span>
-              <span>Action</span>
+              <span>⭐ {mangaData?.rating}</span>
+              <span>{mangaData?.genre}</span>
             </div>
 
-            <p>$12.99</p>
+            <p>${mangaData?.price}</p>
 
             <button>Add to Cart</button>
           </div>
@@ -28,10 +43,7 @@ export const ProductPage = () => {
         {/* Description */}
         <div>
           <h2>About this manga</h2>
-          <p>
-            In a world where hunters battle deadly monsters, Sung Jin-Woo begins
-            as the weakest...
-          </p>
+          <p>{mangaData?.description}</p>
         </div>
       </section>
     </main>

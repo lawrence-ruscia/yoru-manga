@@ -17,7 +17,7 @@ export const routes = [
         element: <ShopPage />,
       },
       {
-        path: 'manga/:mangId',
+        path: 'manga/:mangaId',
         element: <ProductPage />,
       },
     ],
