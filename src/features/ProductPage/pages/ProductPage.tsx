@@ -3,6 +3,7 @@ import styles from './ProductPage.module.css';
 import { useMangaData } from '../hooks/useMangaData';
 import { useState } from 'react';
 import { ChevronLeft } from 'lucide-react';
+import { LoadingPage } from '@/shared/pages/LoadingPage';
 
 export const ProductPage = () => {
   const { mangaId } = useParams();
@@ -12,7 +13,7 @@ export const ProductPage = () => {
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (error) {

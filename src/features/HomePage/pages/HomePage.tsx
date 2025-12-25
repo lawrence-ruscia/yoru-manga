@@ -4,6 +4,7 @@ import styles from './HomePage.module.css';
 import { ProductGrid } from '../components/ProductGrid/ProductGrid';
 import { useMemo } from 'react';
 import type { FetchProductsParams } from '@/shared/types/FetchProductsParams';
+import { LoadingPage } from '@/shared/pages/LoadingPage';
 
 export const HomePage = () => {
   const params: FetchProductsParams = useMemo(() => {
@@ -12,7 +13,7 @@ export const HomePage = () => {
 
   const { products, isLoading, error } = useProducts(params);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingPage />;
 
   if (error) return <div>{error.message}</div>;
 

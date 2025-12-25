@@ -5,6 +5,7 @@ import styles from './ShopPage.module.css';
 import { useMemo } from 'react';
 import type { FetchProductsParams } from '@/shared/types/FetchProductsParams';
 import { Link } from 'react-router-dom';
+import { LoadingPage } from '@/shared/pages/LoadingPage';
 
 export const ShopPage = () => {
   const params: FetchProductsParams = useMemo(() => {
@@ -14,7 +15,7 @@ export const ShopPage = () => {
   const { products, isLoading, error } = useProducts(params);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   if (error) {
