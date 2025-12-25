@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './HeaderNav.module.css';
 import { Menu, Search, ShoppingCart } from 'lucide-react';
 import { navData } from '@/shared/data/navData';
@@ -9,6 +9,8 @@ type HeaderNavProps = {
   cartItemsCount: number;
 };
 export const HeaderNav = ({ onMenuOpen, cartItemsCount }: HeaderNavProps) => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -16,7 +18,7 @@ export const HeaderNav = ({ onMenuOpen, cartItemsCount }: HeaderNavProps) => {
           <button
             className={`${styles.menu} btn-icon`}
             aria-label='Menu'
-            onClick={onMenuOpen}
+            onClick={() => onMenuOpen()}
           >
             <Menu />
           </button>
@@ -40,6 +42,7 @@ export const HeaderNav = ({ onMenuOpen, cartItemsCount }: HeaderNavProps) => {
             type='button'
             aria-label='Cart'
             className={`${styles.cart} btn-icon`}
+            onClick={() => navigate('/cart')}
           >
             <ShoppingCart />
             {cartItemsCount > 0 && (

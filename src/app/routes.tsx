@@ -2,6 +2,7 @@ import { HomePage } from '@/features/HomePage';
 import App from './App';
 import { ShopPage } from '@/features/ShopPage';
 import { ProductPage } from '@/features/ProductPage';
+import { CartPage } from '@/features/Cart';
 
 export const routes = [
   {
@@ -19,6 +20,10 @@ export const routes = [
       {
         path: 'manga/:mangaId',
         element: <ProductPage />,
+      },
+      {
+        path: 'cart',
+        element: <CartPage />,
       },
     ],
   },
