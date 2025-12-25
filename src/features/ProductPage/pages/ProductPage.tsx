@@ -1,8 +1,6 @@
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import styles from './ProductPage.module.css';
 import { useMangaData } from '../hooks/useMangaData';
 import { useState } from 'react';
-import { ChevronLeft } from 'lucide-react';
 import { LoadingPage } from '@/shared/pages/LoadingPage';
 import type { CartContextType } from '@/app/App';
 import type { MouseEvent } from 'react';
@@ -13,7 +11,6 @@ export const ProductPage = () => {
 
   const { mangaData, isLoading, error } = useMangaData(Number(mangaId));
   const [isExpanded, setIsExpanded] = useState(false);
-  const navigate = useNavigate();
 
   const { addToCart } = useOutletContext<CartContextType>();
 
