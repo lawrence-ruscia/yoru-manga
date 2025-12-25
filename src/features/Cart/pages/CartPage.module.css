@@ -172,6 +172,19 @@
   margin: 0 auto 1rem;
 }
 
+.imageLink {
+  display: block;
+}
+
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+}
+
 /* Empty state */
 .page > p {
   max-width: 1200px;

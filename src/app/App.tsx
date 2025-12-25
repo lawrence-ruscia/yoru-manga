@@ -8,6 +8,7 @@ import type { CartItem } from '@/features/Cart';
 export type CartContextType = {
   cartItems: CartItem[];
   addToCart: (product: Omit<CartItem, 'quantity'>) => void;
+  changeQuantity: (productId: number, quantity: number) => void;
 };
 
 function App() {
@@ -34,9 +35,20 @@ function App() {
     });
   };
 
+  const changeQuantity = (productId: number, quantity: number) => {
+    const safeQuantity = Math.max(1, quantity);
+
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity: safeQuantity } : item
+      )
+    );
+  };
+
   const cartContext: CartContextType = {
     cartItems,
     addToCart,
+    changeQuantity,
   };
 
   return (
