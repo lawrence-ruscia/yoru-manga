@@ -2,6 +2,8 @@
 
 A React e-commerce demo focused on routing, state management, and testing best practices.
 
+**[Live Demo](https://yoru-manga.vercel.app/)**
+
 ## Tech Stack
 
 - React + TypeScript
