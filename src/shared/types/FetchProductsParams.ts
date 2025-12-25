@@ -4,4 +4,5 @@ export type FetchProductsParams = {
   sort?: 'asc' | 'desc';
   page?: number;
   status?: 'publishing' | 'complete' | 'hiatus';
+  sfw?: boolean;
 };

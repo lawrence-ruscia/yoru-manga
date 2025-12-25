@@ -9,6 +9,9 @@ export const productsService = {
   ) => {
     const query = new URLSearchParams();
 
+    // Always sfw
+    query.append('sfw', 'true');
+
     // Dynamically add any defined params to query string
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {

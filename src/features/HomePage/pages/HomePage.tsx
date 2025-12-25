@@ -1,17 +1,11 @@
 import { Hero } from '../components/Hero/Hero';
-import { useProducts } from '@/shared/hooks/useProducts';
 import styles from './HomePage.module.css';
 import { ProductGrid } from '../components/ProductGrid/ProductGrid';
-import { useMemo } from 'react';
-import type { FetchProductsParams } from '@/shared/types/FetchProductsParams';
 import { LoadingPage } from '@/shared/pages/LoadingPage';
+import { useHomePage } from '../hooks/useHomePage';
 
 export const HomePage = () => {
-  const params: FetchProductsParams = useMemo(() => {
-    return { limit: 12, order_by: 'popularity' };
-  }, []);
-
-  const { products, isLoading, error } = useProducts(params);
+  const { data, isLoading, error } = useHomePage();
 
   if (isLoading) return <LoadingPage />;
 
@@ -22,7 +16,8 @@ export const HomePage = () => {
       <Hero />
 
       {/* Popular Mangas */}
-      <ProductGrid products={products} />
+      <ProductGrid products={data.popular} title='Popular Manga' />
+      <ProductGrid products={data.newReleases} title='New Releases' />
     </div>
   );
 };

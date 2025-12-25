@@ -5,7 +5,9 @@ import type { MangaProduct } from '../../types/MangaProduct';
 import { ProductCard } from '@/shared/components/ProductCard';
 import { Link } from 'react-router-dom';
 
-export const ProductGrid = ({ products }: { products: MangaProduct[] }) => {
+type ProductGridProps = { products: MangaProduct[]; title: string };
+
+export const ProductGrid = ({ products, title }: ProductGridProps) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -22,7 +24,7 @@ export const ProductGrid = ({ products }: { products: MangaProduct[] }) => {
   return (
     <section className={styles.grid}>
       <div className={styles.header}>
-        <h2 className='heading-md'>Popular Mangas</h2>
+        <h2 className='heading-md'>{title}</h2>
 
         <div className={styles.controls}>
           <button
