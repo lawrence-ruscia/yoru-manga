@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
 import styles from './ProductPage.module.css';
 import { useMangaData } from '../hooks/useMangaData';
+import { useState } from 'react';
 
 export const ProductPage = () => {
   const { mangaId } = useParams();
 
   const { mangaData, isLoading, error } = useMangaData(Number(mangaId));
+  const [isExpanded, setIsExpanded] = useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -45,7 +47,17 @@ export const ProductPage = () => {
         {/* Description */}
         <div className={styles.description}>
           <h2>About this manga</h2>
-          <p>{mangaData?.description}</p>
+          <p className={`${styles.text} ${!isExpanded ? styles.clamped : ''}`}>
+            {mangaData?.description}
+          </p>
+
+          <button
+            type='button'
+            className={styles.toggle}
+            onClick={() => setIsExpanded((prev) => !prev)}
+          >
+            {isExpanded ? 'Show less' : 'Show more'}
+          </button>
         </div>
       </section>
     </main>
