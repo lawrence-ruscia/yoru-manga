@@ -1,7 +1,8 @@
 import type { CartContextType } from '@/app/App';
-import { useOutletContext } from 'react-router';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import styles from './CartPage.module.css';
 import type { CartItem } from '../types/CartItem';
+import { ChevronLeft } from 'lucide-react';
 
 const calculateTotal = (cartItems: CartItem[]) => {
   return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -9,6 +10,7 @@ const calculateTotal = (cartItems: CartItem[]) => {
 
 export const CartPage = () => {
   const { cartItems } = useOutletContext<CartContextType>();
+  const navigate = useNavigate();
 
   if (cartItems.length === 0) {
     return (
@@ -25,53 +27,61 @@ export const CartPage = () => {
   });
 
   return (
-    <main>
-      <h1>Your Cart</h1>
+    <main className={styles.page}>
+      <div className={styles.backContainer}>
+        <button
+          type='button'
+          className={styles.back}
+          onClick={() => navigate(-1)}
+        >
+          <ChevronLeft /> Back
+        </button>
+      </div>
+      <h1 className={styles.heading}>Your Cart</h1>
 
-      <section>
-        <ul>
+      <section className={styles.layout}>
+        <ul className={styles.list}>
           {cartItems.map((item) => (
             <li key={item.id}>
-              <img src={item.imageUrl} alt='' />
-
-              <div>
-                <h2>{item.title}</h2>
-                <p>${item.price}</p>
-
-                <div>
-                  <label>
+              <Link to={`/manga/${item.id}`} className={styles.item}>
+                <img
+                  src={item.imageUrl}
+                  alt={item.title}
+                  className={styles.image}
+                />
+                <div className={styles.details}>
+                  <h2 className={styles.title}>{item.title}</h2>
+                  <p className={styles.price}>${item.price}</p>
+                  <div className={styles.controls}>
                     <input
                       type='number'
                       min={1}
                       value={item.quantity}
                       aria-label='Quantity'
+                      className={styles.quantity}
                     />
-                  </label>
-
-                  <button
-                    type='button'
-                    aria-label={`Remove ${item.title} from cart`}
-                  >
-                    Remove
-                  </button>
+                    <button className={styles.remove}>Remove</button>
+                  </div>
                 </div>
-              </div>
-
-              <div className={styles.subtotal}>
-                {(item.price * item.quantity).toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                })}
-              </div>
+                <div className={styles.subtotal}>
+                  ${(item.price * item.quantity).toFixed(2)}
+                </div>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <aside>
-          <div>
+        <aside className={styles.summary}>
+          <div className={styles.totalRow}>
             <span>Total</span>
-            {total}
+            <strong>{total}</strong>
           </div>
+          <button
+            type='button'
+            className={`${styles.checkout} btn-primary btn-md`}
+          >
+            Proceed to checkout
+          </button>
         </aside>
       </section>
     </main>
