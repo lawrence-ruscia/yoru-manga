@@ -1,71 +1,87 @@
+/* Hero Section */
 .hero {
-  padding: 6rem 1.5rem;
-  min-height: 70vh;
+  padding: 4rem 1rem 5rem;
+  min-height: 80vh;
   display: flex;
-
   align-items: center;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-elevated) 0%,
+    var(--bg-primary) 100%
+  );
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: 3rem;
-}
-
-.button {
-  align-self: center;
+  gap: 2.5rem;
 }
 
 .textBlock {
   text-align: center;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  max-width: 540px;
+}
 
-  gap: 1.25rem;
+.title {
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 0%,
+    var(--text-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.25rem;
+}
+
+.textBlock p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.button {
+  align-self: center;
+  padding: 0.875rem 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .imageBlock {
-  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.imageBlock::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1),
+    rgba(168, 85, 247, 0.1)
+  );
+  border-radius: 1.25rem;
+  z-index: -1;
+  opacity: 0.6;
 }
 
 .imageBlock img {
   width: 100%;
-  max-width: 320px;
   border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    align-items: center;
-    gap: 4rem;
-  }
-
-  .textBlock {
-    flex: 1;
-    align-items: start;
-  }
-
-  .imageBlock {
-    display: flex;
-    justify-content: end;
-    flex: 1;
-  }
-
-  .imageBlock img {
-    max-width: 420px;
-  }
-
-  .button {
-    align-self: start;
-  }
-
-  .hero {
-    padding: 7rem 2rem;
-  }
+.imageBlock img:hover {
+  transform: scale(1.02);
 }

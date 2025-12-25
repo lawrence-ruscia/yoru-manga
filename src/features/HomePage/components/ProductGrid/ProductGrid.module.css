@@ -1,54 +1,163 @@
 .grid {
-  padding: 4rem 1.5rem;
+  padding: 3rem 1rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .controls {
-  /* Hide in mobile */
   display: none;
+  gap: 0.5rem;
 }
 
 .carousel {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 160px;
-
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-
-  padding-bottom: 1rem;
+  padding: 0.5rem 0.5rem 1.5rem;
   gap: 1rem;
+  margin: 0 -0.5rem;
+  padding-left: 0.5rem;
 }
 
 .carousel::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: var(--bg-elevated);
+  border-radius: 2px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 .productItem {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  cursor: pointer;  
+  scroll-snap-align: start;
+  transition: transform 0.2s ease;
 }
 
+.productItem:hover {
+  transform: translateY(-4px);
+}
+
+.productItem a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .carousel {
+    grid-auto-columns: 180px;
+    gap: 1.25rem;
+  }
+
+  .imageBlock {
+    max-width: 320px;
+  }
+}
+
+/* Desktop */
 @media (min-width: 768px) {
+  .hero {
+    padding: 6rem 2rem 7rem;
+  }
+
+  .container {
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  .textBlock {
+    flex: 1;
+    text-align: left;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .textBlock p {
+    font-size: 1.25rem;
+  }
+
+  .button {
+    align-self: flex-start;
+    padding: 1rem 3rem;
+  }
+
+  .imageBlock {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 420px;
+  }
+
+  .grid {
+    padding: 4rem 2rem 5rem;
+  }
+
+  .header {
+    padding: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .header h2 {
+    font-size: 1.875rem;
+  }
+
   .controls {
     display: flex;
-    gap: 1rem;
   }
 
   .carousel {
     grid-auto-columns: 200px;
+    gap: 1.5rem;
+    padding: 0.5rem 0 1.5rem;
+    margin: 0;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 8rem 2rem;
   }
 
-  .grid {
-    padding: 5rem 4rem;
+  .container {
+    gap: 5rem;
+  }
+
+  .imageBlock {
+    max-width: 480px;
+  }
+
+  .carousel {
+    grid-auto-columns: 220px;
   }
 }
