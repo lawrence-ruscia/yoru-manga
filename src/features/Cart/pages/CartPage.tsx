@@ -10,7 +10,7 @@ const calculateTotal = (cartItems: CartItem[]) => {
 };
 
 export const CartPage = () => {
-  const { cartItems, changeQuantity, removeItem } =
+  const { cartItems, changeQuantity, removeItem, handleCheckout } =
     useOutletContext<CartContextType>();
 
   const navigate = useNavigate();
@@ -107,6 +107,7 @@ export const CartPage = () => {
           <button
             type='button'
             className={`${styles.checkout} btn-primary btn-md`}
+            onClick={handleCheckout}
           >
             Proceed to checkout
           </button>

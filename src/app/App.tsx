@@ -12,6 +12,7 @@ export type CartContextType = {
   addToCart: (product: Omit<CartItem, 'quantity'>) => void;
   changeQuantity: (productId: number, quantity: number) => void;
   removeItem: (productId: number) => void;
+  handleCheckout: () => void; 
 };
 
 function App() {
@@ -56,11 +57,19 @@ function App() {
     toast.success(`${item?.title} removed`);
   };
 
+  const handleCheckout = () => {
+    toast('Checkout coming soon!', {
+      icon: '🚀',
+      duration: 2500,
+    });
+  };
+
   const cartContext: CartContextType = {
     cartItems,
     addToCart,
     changeQuantity,
     removeItem,
+    handleCheckout,
   };
 
   return (

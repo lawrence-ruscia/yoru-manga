@@ -7,6 +7,7 @@ import type { FetchProductsParams } from '@/shared/types/FetchProductsParams';
 import { Link } from 'react-router-dom';
 import { LoadingPage } from '@/shared/pages/LoadingPage';
 import { BackButton } from '@/shared/components/BackButton';
+import toast from 'react-hot-toast';
 
 export const ShopPage = () => {
   const params: FetchProductsParams = useMemo(() => {
@@ -34,11 +35,27 @@ export const ShopPage = () => {
 
       {/* Controls: filters / sorting */}
       <section className={styles.controls}>
-        <button className={styles.controlButton}>
+        <button
+          className={styles.controlButton}
+          onClick={() =>
+            toast('Filter coming soon!', {
+              icon: '⚙️',
+              duration: 2500,
+            })
+          }
+        >
           <Funnel /> Filter
         </button>
 
-        <button className={styles.controlButton}>
+        <button
+          className={styles.controlButton}
+          onClick={() =>
+            toast('Sorting coming soon!', {
+              icon: '⚙️',
+              duration: 2500,
+            })
+          }
+        >
           Sort By <ChevronDown />
         </button>
       </section>

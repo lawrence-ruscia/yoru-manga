@@ -3,6 +3,7 @@ import styles from './HeaderNav.module.css';
 import { Menu, Search, ShoppingCart } from 'lucide-react';
 import { navData } from '@/shared/data/navData';
 import { Logo } from '../Logo';
+import toast from 'react-hot-toast';
 
 type HeaderNavProps = {
   onMenuOpen: () => void;
@@ -35,7 +36,16 @@ export const HeaderNav = ({ onMenuOpen, cartItemsCount }: HeaderNavProps) => {
         </div>
 
         <div className={styles.actions}>
-          <button aria-label='Search' className='btn-icon'>
+          <button
+            aria-label='Search'
+            className='btn-icon'
+            onClick={() =>
+              toast('Search coming soon!', {
+                icon: '🔍',
+                duration: 2500,
+              })
+            }
+          >
             <Search />
           </button>
           <button
