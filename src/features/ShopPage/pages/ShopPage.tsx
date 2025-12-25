@@ -66,7 +66,7 @@ export const ShopPage = () => {
           {products &&
             products.map((product) => (
               <li key={product.title}>
-                <Link to={`/manga/${product.id}`}>
+                <Link to={`/manga/${product.id}`} className={styles.link}>
                   <ProductCard product={product} />
                 </Link>
               </li>

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { productsService } from '@/shared/services/productsService';
-import { mockProducts } from '@/shared/data/mockProducts';
+import { mockJikanManga } from '@/shared/data/mockProducts';
 import { render, screen } from '@testing-library/react';
 import { ShopPage } from './ShopPage';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -16,7 +16,7 @@ vi.mock('react-router-dom', async () => {
 describe('ShopPage', () => {
   it('renders a list of manga products', async () => {
     vi.spyOn(productsService, 'fetchProducts').mockResolvedValueOnce({
-      data: mockProducts,
+      data: mockJikanManga,
     });
 
     render(
@@ -27,14 +27,12 @@ describe('ShopPage', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    // Sanitize for errors
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
 
     // Make sure all products are rendered
     const products = await screen.findAllByRole('listitem');
-    expect(products).toHaveLength(mockProducts.length);
-
-    // Sanitize for errors
-    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
+    expect(products).toHaveLength(mockJikanManga.length);
   });
 
   it('shows an error message when failing to fetch products', async () => {

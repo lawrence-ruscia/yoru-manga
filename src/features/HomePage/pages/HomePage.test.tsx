@@ -2,8 +2,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import { HomePage } from './HomePage';
 import { productsService } from '@/shared/services/productsService';
-import { mockProducts } from '@/shared/data/mockProducts';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import * as hooks from '../hooks/useHomePage';
+import { mockHomePageData } from '../data/mockHomePageData';
 
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
@@ -15,8 +16,13 @@ vi.mock('react-router-dom', async () => {
 
 describe('HomePage', () => {
   it('renders a hero section', async () => {
-    vi.spyOn(productsService, 'fetchProducts').mockResolvedValueOnce({
-      data: mockProducts,
+    vi.spyOn(hooks, 'useHomePage').mockReturnValueOnce({
+      data: {
+        popular: mockHomePageData,
+        newReleases: mockHomePageData,
+      },
+      isLoading: false,
+      error: null,
     });
 
     render(
@@ -29,7 +35,6 @@ describe('HomePage', () => {
 
     expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
 
-    screen.debug();
     expect(
       await screen.findByRole('heading', { name: /yoru manga/i })
     ).toBeInTheDocument();
@@ -40,8 +45,13 @@ describe('HomePage', () => {
   });
 
   it('renders a list of manga products', async () => {
-    vi.spyOn(productsService, 'fetchProducts').mockResolvedValueOnce({
-      data: mockProducts,
+    vi.spyOn(hooks, 'useHomePage').mockReturnValueOnce({
+      data: {
+        popular: mockHomePageData,
+        newReleases: mockHomePageData,
+      },
+      isLoading: false,
+      error: null,
     });
 
     render(
@@ -56,7 +66,8 @@ describe('HomePage', () => {
 
     // Make sure all products are rendered
     const products = await screen.findAllByRole('listitem');
-    expect(products).toHaveLength(mockProducts.length);
+    // Since both genre uses the same mock array
+    expect(products).toHaveLength(mockHomePageData.length * 2);
   });
 
   it('shows an error message when failing to fetch products', async () => {

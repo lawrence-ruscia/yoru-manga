@@ -1,6 +1,6 @@
 import type { JikanManga } from '@/features/HomePage/types/JikanManga';
 
-export const mockProducts: JikanManga[] = [
+export const mockJikanManga: JikanManga[] = [
   {
     mal_id: 1,
     images: {
@@ -11,6 +11,7 @@ export const mockProducts: JikanManga[] = [
     title: 'One Piece',
     score: 8.99,
     genres: [{ name: 'Comedy' }],
+    synopsis: 'something blah blah',
   },
   {
     mal_id: 2,
@@ -22,6 +23,7 @@ export const mockProducts: JikanManga[] = [
     title: 'Naruto',
     score: 8.75,
     genres: [{ name: 'Action' }],
+    synopsis: 'something blah blah',
   },
   {
     mal_id: 3,
@@ -33,5 +35,6 @@ export const mockProducts: JikanManga[] = [
     title: 'Monster',
     score: 9.45,
     genres: [{ name: 'Thriller' }],
+    synopsis: 'something blah blah',
   },
 ];

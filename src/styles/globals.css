@@ -6,6 +6,7 @@
     27.4% 0.006 286.033
   ); /* Cards, panels, elevated surfaces */
   --bg-elevated: oklch(37% 0.013 285.805); /* Hover states, nested surfaces */
+  --bg-primary-rgb: 10, 10, 10;
 
   --text-primary: oklch(95% 0.01 285);
   --text-secondary: oklch(70% 0.02 264);

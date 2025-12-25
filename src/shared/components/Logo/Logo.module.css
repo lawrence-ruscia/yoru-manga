@@ -4,6 +4,9 @@
   gap: calc(var(--logo-size) * 0.2);
   font-size: 1.125rem;
   font-weight: 600;
+  text-decoration: none;
+
+  color: var(--text-primary);
 }
 
 .kanji {

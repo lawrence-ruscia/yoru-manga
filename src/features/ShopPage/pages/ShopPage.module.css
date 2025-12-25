@@ -31,6 +31,10 @@
   gap: 1rem;
 }
 
+.link {
+  color: var(--text-primary);
+  text-decoration: none;
+}
 .controlButton {
   display: inline-flex;
   align-items: center;
