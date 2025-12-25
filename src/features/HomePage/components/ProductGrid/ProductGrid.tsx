@@ -3,6 +3,7 @@ import styles from './ProductGrid.module.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MangaProduct } from '../../types/MangaProduct';
 import { ProductCard } from '@/shared/components/ProductCard';
+import { Link } from 'react-router-dom';
 
 export const ProductGrid = ({ products }: { products: MangaProduct[] }) => {
   const listRef = useRef<HTMLUListElement>(null);
@@ -44,7 +45,9 @@ export const ProductGrid = ({ products }: { products: MangaProduct[] }) => {
         {products &&
           products.map((product) => (
             <li key={product.title} className={styles.productItem}>
-              <ProductCard product={product} />
+              <Link to={`/manga/${product.id}`}>
+                <ProductCard product={product} />
+              </Link>
             </li>
           ))}
       </ul>

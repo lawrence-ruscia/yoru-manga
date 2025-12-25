@@ -4,6 +4,7 @@ import { ChevronDown, Funnel } from 'lucide-react';
 import styles from './ShopPage.module.css';
 import { useMemo } from 'react';
 import type { FetchProductsParams } from '@/shared/types/FetchProductsParams';
+import { Link } from 'react-router-dom';
 
 export const ShopPage = () => {
   const params: FetchProductsParams = useMemo(() => {
@@ -45,7 +46,9 @@ export const ShopPage = () => {
           {products &&
             products.map((product) => (
               <li key={product.title}>
-                <ProductCard product={product} />
+                <Link to={`/manga/${product.id}`}>
+                  <ProductCard product={product} />
+                </Link>
               </li>
             ))}
         </ul>
