@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { screen, render, waitFor } from '@testing-library/react';
 import { mangaService } from '../service/mangaService';
 import type { JikanManga } from '@/features/HomePage/types/JikanManga';
-import { MemoryRouter, Route, Routes } from 'react-router';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { mapMangaToProduct } from '@/features/HomePage/utils/mapMangaToProduct';
 import { ProductPage } from './ProductPage';
 

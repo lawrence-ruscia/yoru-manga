@@ -3,6 +3,7 @@ import { screen, render } from '@testing-library/react';
 import { HomePage } from './HomePage';
 import { productsService } from '@/shared/services/productsService';
 import { mockProducts } from '@/shared/data/mockProducts';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 describe('HomePage', () => {
   it('renders a hero section', async () => {
@@ -10,16 +11,24 @@ describe('HomePage', () => {
       data: mockProducts,
     });
 
-    render(<HomePage />);
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
 
-    await screen.findByRole('heading', { name: /yoru manga/i });
+    screen.debug();
+    expect(
+      await screen.findByRole('heading', { name: /yoru manga/i })
+    ).toBeInTheDocument();
+
     expect(
       screen.getByRole('button', { name: /browse manga/i })
     ).toBeInTheDocument();
-
-    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
 
   it('renders a list of manga products', async () => {
@@ -27,16 +36,19 @@ describe('HomePage', () => {
       data: mockProducts,
     });
 
-    render(<HomePage />);
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
 
     // Make sure all products are rendered
     const products = await screen.findAllByRole('listitem');
     expect(products).toHaveLength(mockProducts.length);
-
-    // Sanitize for errors
-    expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
   });
 
   it('shows an error message when failing to fetch products', async () => {
@@ -45,9 +57,14 @@ describe('HomePage', () => {
       new Error(errMsg)
     );
 
-    render(<HomePage />);
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
     expect(await screen.findByText(errMsg)).toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { productsService } from '@/shared/services/productsService';
 import { mockProducts } from '@/shared/data/mockProducts';
 import { render, screen } from '@testing-library/react';
 import { ShopPage } from './ShopPage';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 describe('ShopPage', () => {
   it('renders a list of manga products', async () => {
@@ -10,7 +11,13 @@ describe('ShopPage', () => {
       data: mockProducts,
     });
 
-    render(<ShopPage />);
+    render(
+      <MemoryRouter initialEntries={['/shop']}>
+        <Routes>
+          <Route path='/shop' element={<ShopPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
 
@@ -28,7 +35,13 @@ describe('ShopPage', () => {
       new Error(errMsg)
     );
 
-    render(<ShopPage />);
+    render(
+      <MemoryRouter initialEntries={['/shop']}>
+        <Routes>
+          <Route path='/shop' element={<ShopPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
     expect(await screen.findByText(errMsg)).toBeInTheDocument();
