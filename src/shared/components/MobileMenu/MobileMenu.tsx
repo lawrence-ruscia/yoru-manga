@@ -21,13 +21,17 @@ export const MobileMenu = ({ isMenuOpen, onMenuClose }: MobileMenuProps) => {
         className={`${styles.panel} ${isMenuOpen ? styles.open : styles.close}`}
       >
         <div className={styles.logo}>
-          <Logo size={50} />
+          <Logo size={50} onClick={onMenuClose} />
         </div>
         <nav className={styles.navLinks}>
           {navData &&
             navData.map((data) => (
               <li key={data.title} className={styles.navItem}>
-                <Link to={data.url} className={styles.navLink}>
+                <Link
+                  to={data.url}
+                  className={styles.navLink}
+                  onClick={onMenuClose}
+                >
                   <data.icon />
                   {data.title}
                 </Link>

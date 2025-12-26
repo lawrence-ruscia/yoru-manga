@@ -51,6 +51,9 @@
 }
 
 .navLink {
+  text-decoration: none;
+  color: var(--text-primary);
+
   padding: 0.875rem;
   flex: 1;
   display: flex;
